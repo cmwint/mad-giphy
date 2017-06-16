@@ -5,7 +5,7 @@ import axios from 'axios';
 // routing
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-
+// components
 import MadLibs from './components/MadLibs';
 import MadGiphy from './components/MadGiphy';
 import Error404 from './components/Error404';
@@ -35,7 +35,7 @@ class App extends Component {
 		function getRandomNum(min, max) {
 		  return Math.floor(Math.random() * (max - min) + min);
 		}
-		axios.get(`http://madlibz.herokuapp.com/api/random?minlength=${getRandomNum(5,15)}&maxlength=${getRandomNum(16,24)}`)
+		axios.get(`http://madlibz.herokuapp.com/api/random?minlength=${getRandomNum(1,15)}&maxlength=${getRandomNum(16,30)}`)
 	      .then(res => {
 	        let randomMadLib = res.request.responseText;
 	      	// turn string from API into JSON
@@ -53,13 +53,16 @@ class App extends Component {
 
 	render() {
 		return(
-			<BrowserRouter>
-				<Switch>
-					<Route path='/' render={routeProps => <MadLibs {...routeProps} displayMadLibs={this.state.madLibsArray}/>} />
-					<Route exact path="/mad-giphy/" component={MadGiphy} />
-					<Route component={Error404} />
-				</Switch>
-			</BrowserRouter>
+			<div className="mad-giphy-app">
+				<h1>{this.state.title}</h1>
+				<BrowserRouter>
+					<Switch>
+						<Route path='/' render={routeProps => <MadLibs {...routeProps} displayMadLibs={this.state.madLibsArray} />} />
+						<Route exact path="/mad-giphy/" component={MadGiphy} />
+						<Route component={Error404} />
+					</Switch>
+				</BrowserRouter>
+			</div>
 		);
 	}
 }

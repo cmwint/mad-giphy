@@ -1,0 +1,48 @@
+.mad-lib-form {
+  /*text-align: left;*/
+}
+
+.mad-lib-form__body {
+  line-height: 2.6em;
+  font-weight: 100;
+  font-size: 1em;
+}
+
+.mad-lib-form__body input {
+  border: none;
+  padding: 8px;
+  font-size: 14px;
+  text-align: center;
+  transform: translateY(-3px);
+  margin-right: 2px;
+}
+
+.mad-lib-form__body input:focus {
+  outline-color: #9733ee;
+}
+
+.mad-lib-form__button{
+  width: 100%;
+}
+.mad-lib-form__button button {
+  display: block;
+  margin: auto;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  font-size: 20px;
+  font-weight: 100;
+  letter-spacing: 0.05em;
+  cursor: pointer; 
+  background: linear-gradient(#9733ee,#da22ff);  
+  transition: background 300ms ease-out;  
+  background-size: 1px 100px;  
+}
+
+.mad-lib-form__button button:focus {
+  outline-color: white;
+}
+
+.mad-lib-form__button button:hover {
+  background-position: 200px;
+}
