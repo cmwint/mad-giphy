@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 class MadLibs extends Component {
+
   giphyfyMadLibs(event) {
       // prevent default to stop form from refreshing the page
       event.preventDefault();

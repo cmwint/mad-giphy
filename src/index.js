@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import axios from 'axios';
 
 // routing
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -16,6 +17,8 @@ class App extends Component {
 
 	constructor() {
 	    super();
+
+	    this.getNewMadLibs = this.getNewMadLibs.bind(this);
 	    
 	    this.state = {
 	    	madLibsJson: {},
@@ -23,11 +26,29 @@ class App extends Component {
 	    };
 	}
 
+	componentDidMount(){
+		this.getNewMadLibs();
+	}
+
+	getNewMadLibs() {
+		function getRandomNum(min, max) {
+		  return Math.floor(Math.random() * (max - min) + min);
+		}
+		axios.get(`http://madlibz.herokuapp.com/api/random?minlength=${getRandomNum(5,10)}&maxlength=${getRandomNum(18,24)}`)
+	      .then(res => {
+	        const randomMadLib = res.request.responseText;
+    		this.setState({
+				madLibsJson: randomMadLib
+			});
+	      });
+	}
+
 	render() {
 		return(
 			<BrowserRouter>
 				<Switch>
 					<Route exact path="/" component={MadLibs} />
+					<Route exact path='/' render={routeProps => <MadLibs {...routeProps} dispalyMadLibs={this.state.madLibsJson}/>} />
 					<Route exact path="/mad-giphy/" component={MadGiphy} />
 					<Route component={Error404} />
 				</Switch>
