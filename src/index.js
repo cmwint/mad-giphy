@@ -44,6 +44,7 @@ class App extends Component {
 	        let mergeMadLibArray = randomMadLib.value.reduce(function(arr, v, i) {
                   return arr.concat(v, randomMadLib.blanks[i]); 
                }, []);
+	        mergeMadLibArray.splice(-3,3);
     		this.setState({
 				title: randomMadLib.title,
 				madLibsArray: mergeMadLibArray
