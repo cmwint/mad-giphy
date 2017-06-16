@@ -21,7 +21,8 @@ class App extends Component {
 	    this.getNewMadLibs = this.getNewMadLibs.bind(this);
 	    
 	    this.state = {
-	    	madLibsJson: {},
+	    	title: '',
+	    	madLibsArray: [],
 	    	giphyReplace: {},
 	    };
 	}
@@ -34,11 +35,18 @@ class App extends Component {
 		function getRandomNum(min, max) {
 		  return Math.floor(Math.random() * (max - min) + min);
 		}
-		axios.get(`http://madlibz.herokuapp.com/api/random?minlength=${getRandomNum(5,10)}&maxlength=${getRandomNum(18,24)}`)
+		axios.get(`http://madlibz.herokuapp.com/api/random?minlength=${getRandomNum(5,15)}&maxlength=${getRandomNum(16,24)}`)
 	      .then(res => {
-	        const randomMadLib = res.request.responseText;
+	        let randomMadLib = res.request.responseText;
+	      	// turn string from API into JSON
+	        randomMadLib = JSON.parse(randomMadLib);
+	      	// merge blanks and value arrays so they aren't separate
+	        let mergeMadLibArray = randomMadLib.value.reduce(function(arr, v, i) {
+                  return arr.concat(v, randomMadLib.blanks[i]); 
+               }, []);
     		this.setState({
-				madLibsJson: randomMadLib
+				title: randomMadLib.title,
+				madLibsArray: mergeMadLibArray
 			});
 	      });
 	}
@@ -47,8 +55,7 @@ class App extends Component {
 		return(
 			<BrowserRouter>
 				<Switch>
-					<Route exact path="/" component={MadLibs} />
-					<Route exact path='/' render={routeProps => <MadLibs {...routeProps} dispalyMadLibs={this.state.madLibsJson}/>} />
+					<Route path='/' render={routeProps => <MadLibs {...routeProps} displayMadLibs={this.state.madLibsArray}/>} />
 					<Route exact path="/mad-giphy/" component={MadGiphy} />
 					<Route component={Error404} />
 				</Switch>
