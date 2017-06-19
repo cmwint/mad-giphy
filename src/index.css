@@ -12,6 +12,7 @@ body {
 }
 
 .mad-giphy-app__wrap {
+  min-height: calc(100vh - 124px);
 	max-width: 800px;
 	margin: auto;
 	text-align: center;
