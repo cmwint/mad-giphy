@@ -6,32 +6,28 @@ import './MadLibs.css';
 
 
 class MadLibs extends Component {
-  giphyfyMadLibs(event) {
-      // prevent default to stop form from refreshing the page
-      event.preventDefault();
 
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
 
-      // console.log(this.refs);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    // for (var ref in this.refs) {
-    //     console.log(this.refs[ref]);
-    //     console.log(this.refs[ref].getDOMNode()); 
-    // }
-      // store
-      // const madLibsInputFields = {
-      //   name: this.fieldInput.value,
-      // }
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
 
-      // // console.log(fish);
-      // this.props.convertInputs(madLibsInputFields);
-      // then move the url from home page (/) to /mad-giphy
-      // this.context.router.history.push('/mad-giphy/');
+  handleSubmit(event) {
+    alert('A name was submitted: ' + this.state.value);
+    event.preventDefault();
   }
 
   render() {
     var madLibParts = this.props.displayMadLibs;
     return (
-      <form className="mad-lib-form" onSubmit={(e) => this.giphyfyMadLibs(e)}>
+      <form className="mad-lib-form" onSubmit={this.handleSubmit}>
         <p className="mad-lib-form__body">
           {
             madLibParts.map(function(part, index){
@@ -47,7 +43,7 @@ class MadLibs extends Component {
                     type="text"
                     placeholder={ part }
                     className="mad-lib-form__input"
-                    ref={(input) => part = input}
+                    onChange={this.props.handleChange}
                   />;
               }
             })

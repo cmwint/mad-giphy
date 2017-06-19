@@ -56,21 +56,8 @@ class App extends Component {
 	      });
 	}
 
-	convertInputs(i, e) {
-
-		this.setState({
-			madLibsInput: { ...this.state.madLibsInput, [i]: e.target.value }
-		});
-
-
-		// take a copy of the state
-		// const madLibsInput = {...this.state.madLibsInput};
-		// const timestamp = Date.now();
-		// madLibsInput[`madLibsInputFields${timestamp}`] = madLibsInputFields;
-
-		// this.setState({
-		// 	madLibsInput: madLibsInput
-		// });
+	convertInputs() {
+		console.log('hello');
 	}
 
 	render() {
