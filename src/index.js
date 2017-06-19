@@ -19,6 +19,7 @@ class App extends Component {
 	    super();
 
 	    this.getNewMadLibs = this.getNewMadLibs.bind(this);
+	    this.addInputs = this.addInputs.bind(this);
 	    this.convertInputs = this.convertInputs.bind(this);
 	    
 	    this.state = {
@@ -56,8 +57,22 @@ class App extends Component {
 	      });
 	}
 
+	addInputs(inputsObj) {
+		// take a copy of the state
+	    const addInputs = {...this.state.addInputs};
+	    // then add in object
+	    // const timestamp = Date.now();
+	    // fishes[`fish${timestamp}`] = inputsObj;
+
+	    // set state
+	    this.setState({ madLibsInput: inputsObj });
+
+
+		console.log('blah this is soemthingsjhdgklsj');
+	}
+
 	convertInputs() {
-		console.log('hello');
+		//console.log('hello');
 	}
 
 	render() {
@@ -66,7 +81,7 @@ class App extends Component {
 				<h1>{this.state.title}</h1>
 				<BrowserRouter>
 					<Switch>
-						<Route path='/' render={routeProps => <MadLibs {...routeProps} displayMadLibs={this.state.madLibsArray} convertInputs={this.convertInputs} />} />
+						<Route path='/' render={routeProps => <MadLibs {...routeProps} displayMadLibs={this.state.madLibsArray} convertInputs={this.convertInputs} addInputs={this.addInputs} />} />
 						<Route path="/mad-giphy/" component={MadGiphy} />
 						<Route component={Error404} />
 					</Switch>

@@ -13,9 +13,14 @@ class MadLibs extends Component {
 
       console.log(this.props);
   }
-  
-  handleChange(event) {
-    console.log('hello');
+
+  handleChange(i, e) {
+    // console.log(i);
+    // console.log(e.target.value);
+    var obj = {};
+    obj[i] = e.target.value;
+
+    this.props.addInputs(obj);
   }
 
   render() {
@@ -24,7 +29,9 @@ class MadLibs extends Component {
       <form className="mad-lib-form" onSubmit={(e) => this.giphyfyMadLibs(e)}>
         <p className="mad-lib-form__body">
           {
-            madLibParts.map(function(part, index){
+            // using arrow function to declare that callback
+            // and keeping the correct this from the render method
+            madLibParts.map((part, index) => {
               if(index % 2 === 0){
                 return <span
                     key={ index }
@@ -37,7 +44,7 @@ class MadLibs extends Component {
                     type="text"
                     placeholder={ part }
                     className="mad-lib-form__input"
-                    onChange={(e) => this.handleChange(e)}
+                    onChange={this.handleChange.bind(this, index)}
                   />;
               }
             })
