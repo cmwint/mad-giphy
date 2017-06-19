@@ -6,25 +6,18 @@ import './MadLibs.css';
 
 
 class MadLibs extends Component {
+
   giphyfyMadLibs(event) {
       // prevent default to stop form from refreshing the page
       event.preventDefault();
 
-
       console.log(this.props);
-
-
-      // store
-      // const madLibsInputFields = {
-      //   name: this.fieldInput.value,
-      // }
-
-      // // console.log(fish);
-      // this.props.convertInputs(madLibsInputFields);
-      // then move the url from home page (/) to /mad-giphy
-      // this.context.router.history.push('/mad-giphy/');
   }
   
+  handleChange(event) {
+    console.log('hello');
+  }
+
   render() {
     var madLibParts = this.props.displayMadLibs;
     return (
@@ -44,6 +37,7 @@ class MadLibs extends Component {
                     type="text"
                     placeholder={ part }
                     className="mad-lib-form__input"
+                    onChange={(e) => this.handleChange(e)}
                   />;
               }
             })
