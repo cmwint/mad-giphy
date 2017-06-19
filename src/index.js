@@ -19,10 +19,12 @@ class App extends Component {
 	    super();
 
 	    this.getNewMadLibs = this.getNewMadLibs.bind(this);
+	    this.convertInputs = this.convertInputs.bind(this);
 	    
 	    this.state = {
 	    	title: '',
 	    	madLibsArray: [],
+	    	madLibsInput: [],
 	    	giphyReplace: {},
 	    };
 	}
@@ -44,12 +46,31 @@ class App extends Component {
 	        let mergeMadLibArray = randomMadLib.value.reduce(function(arr, v, i) {
                   return arr.concat(v, randomMadLib.blanks[i]); 
                }, []);
+	      	// remove weird last three empty values
 	        mergeMadLibArray.splice(-3,3);
+
     		this.setState({
 				title: randomMadLib.title,
 				madLibsArray: mergeMadLibArray
 			});
 	      });
+	}
+
+	convertInputs(i, e) {
+
+		this.setState({
+			madLibsInput: { ...this.state.madLibsInput, [i]: e.target.value }
+		});
+
+
+		// take a copy of the state
+		// const madLibsInput = {...this.state.madLibsInput};
+		// const timestamp = Date.now();
+		// madLibsInput[`madLibsInputFields${timestamp}`] = madLibsInputFields;
+
+		// this.setState({
+		// 	madLibsInput: madLibsInput
+		// });
 	}
 
 	render() {
@@ -58,8 +79,8 @@ class App extends Component {
 				<h1>{this.state.title}</h1>
 				<BrowserRouter>
 					<Switch>
-						<Route path='/' render={routeProps => <MadLibs {...routeProps} displayMadLibs={this.state.madLibsArray} />} />
-						<Route exact path="/mad-giphy/" component={MadGiphy} />
+						<Route path='/' render={routeProps => <MadLibs {...routeProps} displayMadLibs={this.state.madLibsArray} convertInputs={this.convertInputs} />} />
+						<Route path="/mad-giphy/" component={MadGiphy} />
 						<Route component={Error404} />
 					</Switch>
 				</BrowserRouter>

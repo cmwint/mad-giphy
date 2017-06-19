@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Phrase from './Phrase';
-import LibInput from './LibInput';
 
 // styling
 import './MadLibs.css';
@@ -12,6 +10,20 @@ class MadLibs extends Component {
       // prevent default to stop form from refreshing the page
       event.preventDefault();
 
+
+      // console.log(this.refs);
+
+    // for (var ref in this.refs) {
+    //     console.log(this.refs[ref]);
+    //     console.log(this.refs[ref].getDOMNode()); 
+    // }
+      // store
+      // const madLibsInputFields = {
+      //   name: this.fieldInput.value,
+      // }
+
+      // // console.log(fish);
+      // this.props.convertInputs(madLibsInputFields);
       // then move the url from home page (/) to /mad-giphy
       // this.context.router.history.push('/mad-giphy/');
   }
@@ -24,9 +36,19 @@ class MadLibs extends Component {
           {
             madLibParts.map(function(part, index){
               if(index % 2 === 0){
-                return <Phrase key={ index } info={ part } />;
+                return <span
+                    key={ index }
+                    className="mad-lib-form__phrase">
+                    { part }
+                  </span>;
               }else{
-                return <LibInput key={ index } placeholder={ part } />;
+                return <input
+                    key={ index }
+                    type="text"
+                    placeholder={ part }
+                    className="mad-lib-form__input"
+                    ref={(input) => part = input}
+                  />;
               }
             })
           }
@@ -37,7 +59,7 @@ class MadLibs extends Component {
             <span>Giphy-fy me!</span>
           </button>
         </div>
-        
+
       </form>
     );
   }
