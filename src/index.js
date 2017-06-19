@@ -25,7 +25,7 @@ class App extends Component {
 	    this.state = {
 	    	title: '',
 	    	madLibsArray: [],
-	    	madLibsInput: [],
+	    	madLibsInput: {},
 	    	giphyReplace: {},
 	    };
 	}
@@ -57,18 +57,13 @@ class App extends Component {
 	      });
 	}
 
-	addInputs(inputsObj) {
+	addInputs(input, value) {
 		// take a copy of the state
-	    const addInputs = {...this.state.addInputs};
-	    // then add in object
-	    // const timestamp = Date.now();
-	    // fishes[`fish${timestamp}`] = inputsObj;
-
-	    // set state
-	    this.setState({ madLibsInput: inputsObj });
-
-
-		console.log('blah this is soemthingsjhdgklsj');
+	    const madLibsInput = {...this.state.madLibsInput};
+	    // then add in new objects from field inputs
+	    madLibsInput[input] = value;
+	    // set state with added objects in it
+	    this.setState({ madLibsInput });
 	}
 
 	convertInputs() {

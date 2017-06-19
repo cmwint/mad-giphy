@@ -11,20 +11,16 @@ class MadLibs extends Component {
       // prevent default to stop form from refreshing the page
       event.preventDefault();
 
-      console.log(this.props);
+      //console.log(this.props);
   }
 
   handleChange(i, e) {
-    // console.log(i);
-    // console.log(e.target.value);
-    var obj = {};
-    obj[i] = e.target.value;
-
-    this.props.addInputs(obj);
+    this.props.addInputs(i, e.target.value);
   }
 
   render() {
     var madLibParts = this.props.displayMadLibs;
+    var obj = {};
     return (
       <form className="mad-lib-form" onSubmit={(e) => this.giphyfyMadLibs(e)}>
         <p className="mad-lib-form__body">
