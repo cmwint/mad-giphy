@@ -71,22 +71,32 @@ class App extends Component {
 		function getRandomNum(min, max) {
 			return Math.floor(Math.random() * (max - min) + min);
 		}
-		// make a copy of state
-		const giphyReplace = {...this.state.giphyReplace};
+		
+		var promiseArray = [];
 		// for every key/value in the madLibsInput state
 		for(var key in this.state.madLibsInput) {
 			// save the value
 		    var value = this.state.madLibsInput[key];
-		    // call out to the GIPHY api, searching that value
-		    axios.get(`http://api.giphy.com/v1/gifs/search?q=${value}&api_key=dc6zaTOxFJmzC`)
-		      .then(response => {
-				// then add in new key value pair with file of a random gif matching that value
-				giphyReplace[key] = response.data.data[getRandomNum(1,15)].images.downsized_small.mp4;
-				// set state with added new giphy image associated with key
-				this.setState({ giphyReplace });
-		      });
+		    // call out to the API
+		    var promise = axios.get(`http://api.giphy.com/v1/gifs/search?q=${value}&api_key=dc6zaTOxFJmzC`);
+		    // save it to an array
+		    promiseArray.push(promise);
+
 		}
-		
+		Promise.all(promiseArray).then((response) => {
+			var index = 1;
+			const giphyReplace = {...this.state.giphyReplace};
+			for(var object in response) {
+				// get giphy images
+				var value = response[object].data.data[getRandomNum(1,15)].images.downsized_small.mp4;
+				// update state
+				giphyReplace[index] = value;
+				// set state with added objects in it
+				this.setState({ giphyReplace });
+				// increment by 2 to align with madLibsInput
+				index += 2;
+			}
+		})
 	}
 
 	render() {
