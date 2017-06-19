@@ -6,28 +6,29 @@ import './MadLibs.css';
 
 
 class MadLibs extends Component {
+  giphyfyMadLibs(event) {
+      // prevent default to stop form from refreshing the page
+      event.preventDefault();
 
-  constructor(props) {
-    super(props);
-    this.state = {value: ''};
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+      console.log(this.props);
+
+
+      // store
+      // const madLibsInputFields = {
+      //   name: this.fieldInput.value,
+      // }
+
+      // // console.log(fish);
+      // this.props.convertInputs(madLibsInputFields);
+      // then move the url from home page (/) to /mad-giphy
+      // this.context.router.history.push('/mad-giphy/');
   }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
-
+  
   render() {
     var madLibParts = this.props.displayMadLibs;
     return (
-      <form className="mad-lib-form" onSubmit={this.handleSubmit}>
+      <form className="mad-lib-form" onSubmit={(e) => this.giphyfyMadLibs(e)}>
         <p className="mad-lib-form__body">
           {
             madLibParts.map(function(part, index){
@@ -43,7 +44,6 @@ class MadLibs extends Component {
                     type="text"
                     placeholder={ part }
                     className="mad-lib-form__input"
-                    onChange={this.props.handleChange}
                   />;
               }
             })
