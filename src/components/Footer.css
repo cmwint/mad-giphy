@@ -1,0 +1,21 @@
+.footer {
+  background-color: #9733ee;
+  font-size: 12px;
+}
+
+.footer__wrap {
+  max-width: 1000px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__site a {
+  text-decoration: none;
+  color: white;
+  transition: 200ms;
+}
+
+.footer__site a:hover {
+  color: rgb(39, 188, 78);
+}

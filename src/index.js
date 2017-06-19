@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import MadLibs from './components/MadLibs';
 import MadGiphy from './components/MadGiphy';
 import Error404 from './components/Error404';
+import Footer from './components/Footer';
 //import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
@@ -57,11 +58,11 @@ class App extends Component {
 	      });
 	}
 
-	addInputs(input, value) {
+	addInputs(index, value) {
 		// take a copy of the state
 	    const madLibsInput = {...this.state.madLibsInput};
 	    // then add in new objects from field inputs
-	    madLibsInput[input] = value;
+	    madLibsInput[index] = value;
 	    // set state with added objects in it
 	    this.setState({ madLibsInput });
 	}
@@ -73,25 +74,21 @@ class App extends Component {
 	render() {
 		return(
 			<div className="mad-giphy-app">
-				<h1>{this.state.title}</h1>
-				<BrowserRouter>
-					<Switch>
-						<Route path='/' render={routeProps => <MadLibs {...routeProps} displayMadLibs={this.state.madLibsArray} convertInputs={this.convertInputs} addInputs={this.addInputs} />} />
-						<Route path="/mad-giphy/" component={MadGiphy} />
-						<Route component={Error404} />
-					</Switch>
-				</BrowserRouter>
+				<div className="mad-giphy-app__wrap">
+					<h1>{this.state.title}</h1>
+					<BrowserRouter>
+						<Switch>
+							<Route path='/' render={routeProps => <MadLibs {...routeProps} displayMadLibs={this.state.madLibsArray} convertInputs={this.convertInputs} addInputs={this.addInputs} />} />
+							<Route path="/mad-giphy/" component={MadGiphy} />
+							<Route component={Error404} />
+						</Switch>
+					</BrowserRouter>
+				</div>
+				<Footer />
 			</div>
 		);
 	}
 }
-
-
-// using the render method from the react-dom package
-// first thing we pass it is what component we would like to render
-// this is JSX since it's kinda like our own tag
-// then the last thing is what DOM element it should render out to
-	//render(<App />, document.querySelector('#ohHello'));
 
 render(<App />, document.getElementById('root'));
 //registerServiceWorker();

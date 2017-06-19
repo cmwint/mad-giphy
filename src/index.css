@@ -11,7 +11,7 @@ body {
   color: white;
 }
 
-.mad-giphy-app {
+.mad-giphy-app__wrap {
 	max-width: 800px;
 	margin: auto;
 	text-align: center;

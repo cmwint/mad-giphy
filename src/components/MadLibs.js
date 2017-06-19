@@ -15,12 +15,12 @@ class MadLibs extends Component {
   }
 
   handleChange(i, e) {
+    // pass this and the index to the method in the parent component that updates state
     this.props.addInputs(i, e.target.value);
   }
 
   render() {
     var madLibParts = this.props.displayMadLibs;
-    var obj = {};
     return (
       <form className="mad-lib-form" onSubmit={(e) => this.giphyfyMadLibs(e)}>
         <p className="mad-lib-form__body">
@@ -38,6 +38,7 @@ class MadLibs extends Component {
                 return <input
                     key={ index }
                     type="text"
+                    required
                     placeholder={ part }
                     className="mad-lib-form__input"
                     onChange={this.handleChange.bind(this, index)}
