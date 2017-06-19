@@ -68,7 +68,24 @@ class App extends Component {
 	}
 
 	convertInputs() {
-		//console.log('hello');
+		function getRandomNum(min, max) {
+			return Math.floor(Math.random() * (max - min) + min);
+		}
+
+		const giphyReplace = {...this.state.giphyReplace};
+		// for every key/value in the madLibsInput state
+		for(var key in this.state.madLibsInput) {
+		    var value = this.state.madLibsInput[key];
+		    // console.log(key);
+		    axios.get(`http://api.giphy.com/v1/gifs/search?q=${value}&api_key=dc6zaTOxFJmzC`)
+		      .then(response => {
+				// then add in new objects from field inputs
+				giphyReplace[key] = response.data.data[getRandomNum(1,15)].images.downsized_small.mp4;
+				// set state with added new giphy image associated with key
+				this.setState({ giphyReplace });
+		      });
+		}
+		
 	}
 
 	render() {

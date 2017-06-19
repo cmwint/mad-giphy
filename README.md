@@ -8,3 +8,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - also add CSS prefixes
 - add credits at the bottom
 - add something in that waits to load the page until the API call is successful
+- make sure all inputs fields are required

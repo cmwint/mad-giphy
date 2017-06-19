@@ -11,7 +11,7 @@ class MadLibs extends Component {
       // prevent default to stop form from refreshing the page
       event.preventDefault();
 
-      //console.log(this.props);
+      this.props.convertInputs();
   }
 
   handleChange(i, e) {
@@ -38,7 +38,7 @@ class MadLibs extends Component {
                 return <input
                     key={ index }
                     type="text"
-                    required
+                    // required
                     placeholder={ part }
                     className="mad-lib-form__input"
                     onChange={this.handleChange.bind(this, index)}
