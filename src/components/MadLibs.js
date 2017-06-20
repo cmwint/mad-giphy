@@ -39,7 +39,7 @@ class MadLibs extends Component {
                 return <input
                     key={ index }
                     type="text"
-                    // required
+                    required
                     placeholder={ part }
                     id={ index }
                     className="mad-lib-form__input"

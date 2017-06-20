@@ -4,7 +4,8 @@
 }
 
 .footer__wrap {
-  max-width: 1000px;
+  max-width: 950px;
+  margin: auto;
   padding: 10px;
   display: flex;
   justify-content: space-between;
