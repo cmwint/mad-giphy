@@ -6,15 +6,14 @@ import './MadGiphy.css';
 class MadGiphy extends Component {
 
 	getData() {
-    	var imageArray = [];
-    	this.props.gifImages.map((image, index) => {
-    		// edit each image string because it actually doesn't return a .gif file
-			var imageGif = image.indexOf('-');
-			image = image.substring(0, imageGif !== -1 ? imageGif : image.length);
-			image = image + '.gif';
+		var imageArray = this.props.gifImages.map((image, index) => {
+            // edit each image string because it actually doesn't return a .gif file
+            var imageGif = image.indexOf('-');
+            image = image.substring(0, imageGif !== -1 ? imageGif : image.length);
+            image = image + '.gif';
 
-    		imageArray.push(image);
-    	})
+            return image;
+        });
 
     	var phrasesArray = [];
 		this.props.madLibsArray.map((phrase, index) => {

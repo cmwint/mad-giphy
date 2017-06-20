@@ -47,3 +47,36 @@
 .mad-lib-form__button button:hover {
   background-position: 200px;
 }
+
+/* Different mad libs in different colors */
+.how-to-cross-a-piranha-infested-river .mad-lib-form__body input:focus {
+  outline-color: #edb35d;
+}
+.how-to-cross-a-piranha-infested-river .mad-lib-form__button button {
+  background: linear-gradient(#edb35d,#F09819);  
+}
+.how-to-cross-a-piranha-infested-river .mad-lib-form__button button:hover {
+  background-position: 200px;
+}
+
+
+.how-to-date-the-coolest-guygirl-in-school .mad-lib-form__body input:focus {
+  outline-color: #0ABFBC;
+}
+.how-to-date-the-coolest-guygirl-in-school .mad-lib-form__button button {
+  background: linear-gradient(#0ABFBC,#51979b);  
+}
+.how-to-date-the-coolest-guygirl-in-school .mad-lib-form__button button:hover {
+  background-position: 200px;
+}
+
+
+.three-little-pigs .mad-lib-form__body input:focus {
+  outline-color: #696969;
+}
+.three-little-pigs .mad-lib-form__button button {
+  background: linear-gradient(#8c8c8c,#696969);  
+}
+.three-little-pigs .mad-lib-form__button button:hover {
+  background-position: 200px;
+}

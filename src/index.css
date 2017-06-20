@@ -7,8 +7,23 @@ body {
   font-weight: light;
   font-size: 20px;
   letter-spacing: 0.05em;
-  background: rgb(39, 188, 78);
   color: white;
+}
+
+.mad-giphy-app {
+  background: rgb(39, 188, 78);
+}
+
+.mad-giphy-app.how-to-cross-a-piranha-infested-river {
+  background-color: rgb(32, 62, 146);
+}
+
+.mad-giphy-app.how-to-date-the-coolest-guygirl-in-school {
+  background-color: #FC354C;
+}
+
+.mad-giphy-app.three-little-pigs {
+  background-color: rgb(255,142,160);
 }
 
 .mad-giphy-app__wrap {

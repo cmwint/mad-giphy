@@ -102,8 +102,15 @@ class App extends Component {
 	}
 
 	render() {
+		var classesArray = [];
+
+		// Add any additional class names
+		classesArray.push('mad-giphy-app');
+		classesArray.push(this.state.title.toLowerCase().split(' ').join('-').replace('/', ''));
+		var classString = classesArray.join(' ');
+
 		return(
-			<div className="mad-giphy-app">
+			<div className={classString}>
 				<div className="mad-giphy-app__wrap">
 					<h1>{this.state.title}</h1>
 					<BrowserRouter>
