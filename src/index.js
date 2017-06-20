@@ -27,7 +27,7 @@ class App extends Component {
 	    	title: '',
 	    	madLibsArray: [],
 	    	madLibsInput: {},
-	    	giphyReplace: {},
+	    	giphyReplace: [],
 	    };
 	}
 
@@ -84,18 +84,22 @@ class App extends Component {
 
 		}
 		Promise.all(promiseArray).then((response) => {
-			var index = 1;
+			// var index = 1;
 			const giphyReplace = {...this.state.giphyReplace};
+			var gifsArray = [];
+
 			for(var object in response) {
 				// get giphy images
 				var value = response[object].data.data[getRandomNum(1,15)].images.downsized_small.mp4;
 				// update state
-				giphyReplace[index] = value;
-				// set state with added objects in it
-				this.setState({ giphyReplace });
-				// increment by 2 to align with madLibsInput
-				index += 2;
+				gifsArray.push(value);
+
+				// // set state with added array items
+				this.setState({
+					giphyReplace: gifsArray
+				})
 			}
+			//console.log(this.state.giphyReplace);
 		})
 	}
 

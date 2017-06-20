@@ -11,7 +11,7 @@ class MadLibs extends Component {
       // prevent default to stop form from refreshing the page
       event.preventDefault();
       this.props.convertInputs();
-      //this.context.router.history.push('/mad-giphy/');
+      this.context.router.history.push('/mad-giphy/');
       //console.log(this.props.gifImages);
   }
 
