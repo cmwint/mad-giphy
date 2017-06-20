@@ -106,8 +106,8 @@ class App extends Component {
 					<h1>{this.state.title}</h1>
 					<BrowserRouter>
 						<Switch>
-							<Route path='/' render={routeProps => <MadLibs {...routeProps} displayMadLibs={this.state.madLibsArray} convertInputs={this.convertInputs} addInputs={this.addInputs} />} />
-							<Route path="/mad-giphy/" component={MadGiphy} />
+							<Route exact path='/' render={routeProps => <MadLibs {...routeProps} gifImages={this.state.giphyReplace} displayMadLibs={this.state.madLibsArray} convertInputs={this.convertInputs} addInputs={this.addInputs} />} />
+							<Route exact path="/mad-giphy/" render={routeProps => <MadGiphy {...routeProps} gifImages={this.state.giphyReplace} madLibsInput={this.state.madLibsInput} madLibsArray={this.state.madLibsArray} />} />
 							<Route component={Error404} />
 						</Switch>
 					</BrowserRouter>

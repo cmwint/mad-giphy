@@ -10,8 +10,9 @@ class MadLibs extends Component {
   giphyfyMadLibs(event) {
       // prevent default to stop form from refreshing the page
       event.preventDefault();
-
       this.props.convertInputs();
+      //this.context.router.history.push('/mad-giphy/');
+      //console.log(this.props.gifImages);
   }
 
   handleChange(i, e) {
@@ -40,6 +41,7 @@ class MadLibs extends Component {
                     type="text"
                     // required
                     placeholder={ part }
+                    id={ index }
                     className="mad-lib-form__input"
                     onChange={this.handleChange.bind(this, index)}
                   />;
