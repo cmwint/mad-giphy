@@ -1,4 +1,10 @@
 .mad-giphy-output {
+  line-height: 150px
+}
+
+.mad-giphy-output__image {
+  display: inline-block;
+  transform: translateY(65px);
 }
 
 .mad-giphy-output__image img {
