@@ -9,4 +9,5 @@
 
 .mad-giphy-output__image img {
   height: 130px;
+  border: 2px solid white;
 }
