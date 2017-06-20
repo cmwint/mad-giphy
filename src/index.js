@@ -85,16 +85,14 @@ class App extends Component {
 		}
 		Promise.all(promiseArray).then((response) => {
 			// var index = 1;
-			const giphyReplace = {...this.state.giphyReplace};
 			var gifsArray = [];
-
 			for(var object in response) {
 				// get giphy images
 				var value = response[object].data.data[getRandomNum(1,15)].images.downsized_small.mp4;
 				// update state
 				gifsArray.push(value);
 
-				// // set state with added array items
+				// set state with added array items
 				this.setState({
 					giphyReplace: gifsArray
 				})
