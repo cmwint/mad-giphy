@@ -95,7 +95,10 @@ class App extends Component {
 				})
 			}
 			//console.log(this.state.giphyReplace);
-		})
+		}).catch(function(err) {
+	        // dispatch a failure and throw error
+	        throw err;
+	    });
 	}
 
 	render() {
