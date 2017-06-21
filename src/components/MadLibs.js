@@ -12,7 +12,6 @@ class MadLibs extends Component {
       event.preventDefault();
       this.props.convertInputs();
       this.context.router.history.push('/mad-giphy/');
-      //console.log(this.props.gifImages);
   }
 
   handleChange(i, e) {

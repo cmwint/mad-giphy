@@ -21,6 +21,7 @@ class App extends Component {
 	    this.getNewMadLibs = this.getNewMadLibs.bind(this);
 	    this.addInputs = this.addInputs.bind(this);
 	    this.convertInputs = this.convertInputs.bind(this);
+	    this.getRandomNum = this.getRandomNum.bind(this);
 	    
 	    this.state = {
 	    	title: '',
@@ -30,15 +31,16 @@ class App extends Component {
 	    };
 	}
 
+	getRandomNum(min, max) {
+		return Math.floor(Math.random() * (max - min) + min);
+	}
+
 	componentDidMount(){
 		this.getNewMadLibs();
 	}
 
 	getNewMadLibs() {
-		function getRandomNum(min, max) {
-		  return Math.floor(Math.random() * (max - min) + min);
-		}
-		axios.get(`http://madlibz.herokuapp.com/api/random?minlength=${getRandomNum(1,15)}&maxlength=${getRandomNum(16,30)}`)
+		axios.get(`http://madlibz.herokuapp.com/api/random?minlength=${this.getRandomNum(1,15)}&maxlength=${this.getRandomNum(16,30)}`)
 	      .then(res => {
 	        let randomMadLib = res.request.responseText;
 	      	// turn string from API into JSON
@@ -67,10 +69,6 @@ class App extends Component {
 	}
 
 	convertInputs() {
-		function getRandomNum(min, max) {
-			return Math.floor(Math.random() * (max - min) + min);
-		}
-		
 		var promiseArray = [];
 		// for every key/value in the madLibsInput state
 		for(var key in this.state.madLibsInput) {
@@ -87,7 +85,7 @@ class App extends Component {
 			var gifsArray = [];
 			for(var object in response) {
 				// get giphy images
-				var value = response[object].data.data[getRandomNum(1,15)].images.downsized_small.mp4;
+				var value = response[object].data.data[this.getRandomNum(1,15)].images.downsized_small.mp4;
 				// update state
 				gifsArray.push(value);
 
@@ -126,4 +124,3 @@ class App extends Component {
 }
 
 render(<App />, document.getElementById('root'));
-//registerServiceWorker();
