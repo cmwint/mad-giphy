@@ -78,7 +78,7 @@ class App extends Component {
 			// save the value
 		    var value = this.state.madLibsInput[key];
 		    // call out to the API
-		    var promise = axios.get(`http://api.giphy.com/v1/gifs/search?q=${value}&api_key=dc6zaTOxFJmzC`);
+		    var promise = axios.get(`http://api.giphy.com/v1/gifs/search?q=${value}&api_key=dc6zaTOxFJmzC&rating=pg`);
 		    // save it to an array
 		    promiseArray.push(promise);
 

@@ -7,5 +7,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - add SASS preprocessing 
 - also add CSS prefixes
 - ~~add credits at the bottom~~
-- add something in that waits to load the page until the API call is successful
+- add something in that tells the user it's loading until the madlibs API call is successful
 - ~~make sure all inputs fields are required~~
+- load the acutal inputs under each gif at the end
+- ~~Lower rating in Giphy API~~
