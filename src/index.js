@@ -10,7 +10,6 @@ import MadLibs from './components/MadLibs';
 import MadGiphy from './components/MadGiphy';
 import Error404 from './components/Error404';
 import Footer from './components/Footer';
-//import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
 
@@ -103,8 +102,7 @@ class App extends Component {
 
 	render() {
 		var classesArray = [];
-
-		// Add any additional class names
+		// additional class names
 		classesArray.push('mad-giphy-app');
 		classesArray.push(this.state.title.toLowerCase().split(' ').join('-').replace('/', ''));
 		var classString = classesArray.join(' ');

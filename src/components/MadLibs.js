@@ -22,42 +22,48 @@ class MadLibs extends Component {
 
   render() {
     var madLibParts = this.props.displayMadLibs;
-    return (
-      <form className="mad-lib-form" onSubmit={(e) => this.giphyfyMadLibs(e)}>
-        <p className="mad-lib-form__body">
-          {
-            // using arrow function to declare that callback
-            // and keeping the correct this from the render method
-            madLibParts.map((part, index) => {
-              if(index % 2 === 0){
-                return <span
-                    key={ index }
-                    className="mad-lib-form__phrase">
-                    { part }
-                  </span>;
-              }else{
-                return <input
-                    key={ index }
-                    type="text"
-                    required
-                    placeholder={ part }
-                    id={ index }
-                    className="mad-lib-form__input"
-                    onChange={this.handleChange.bind(this, index)}
-                  />;
+    if (!madLibParts) {
+      return (
+        <div>Loading...</div>
+      )
+    } else{
+      return (
+          <form className="mad-lib-form" onSubmit={(e) => this.giphyfyMadLibs(e)}>
+            <p className="mad-lib-form__body">
+              {
+                // using arrow function to declare that callback
+                // and keeping the correct this from the render method
+                madLibParts.map((part, index) => {
+                  if(index % 2 === 0){
+                    return <span
+                        key={ index }
+                        className="mad-lib-form__phrase">
+                        { part }
+                      </span>;
+                  }else{
+                    return <input
+                        key={ index }
+                        type="text"
+                        required
+                        placeholder={ part }
+                        id={ index }
+                        className="mad-lib-form__input"
+                        onChange={this.handleChange.bind(this, index)}
+                      />;
+                  }
+                })
               }
-            })
-          }
-        </p>
+            </p>
 
-        <div className="mad-lib-form__button">
-          <button type="submit">
-            <span>Giphy-fy me!</span>
-          </button>
-        </div>
+            <div className="mad-lib-form__button">
+              <button type="submit">
+                <span>Giphy-fy me!</span>
+              </button>
+            </div>
 
-      </form>
-    );
+          </form>
+      );
+    }
   }
 }
 
