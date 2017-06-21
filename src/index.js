@@ -16,19 +16,19 @@ import './index.css';
 class App extends Component {
 
 	constructor() {
-	    super();
+    super();
 
-	    this.getNewMadLibs = this.getNewMadLibs.bind(this);
-	    this.addInputs = this.addInputs.bind(this);
-	    this.convertInputs = this.convertInputs.bind(this);
-	    this.getRandomNum = this.getRandomNum.bind(this);
-	    
-	    this.state = {
-	    	title: '',
-	    	madLibsArray: [],
-	    	madLibsInput: {},
-	    	giphyReplace: [],
-	    };
+    this.getNewMadLibs = this.getNewMadLibs.bind(this);
+    this.addInputs = this.addInputs.bind(this);
+    this.convertInputs = this.convertInputs.bind(this);
+    this.getRandomNum = this.getRandomNum.bind(this);
+    
+    this.state = {
+    	title: '',
+    	madLibsArray: [],
+    	madLibsInput: {},
+    	giphyReplace: [],
+    };
 	}
 
 	getRandomNum(min, max) {
@@ -47,8 +47,8 @@ class App extends Component {
 	        randomMadLib = JSON.parse(randomMadLib);
 	      	// merge blanks and value arrays so they aren't separate
 	        let mergeMadLibArray = randomMadLib.value.reduce(function(arr, v, i) {
-                  return arr.concat(v, randomMadLib.blanks[i]); 
-               }, []);
+            return arr.concat(v, randomMadLib.blanks[i]); 
+          }, []);
 	      	// remove weird last three empty values
 	        mergeMadLibArray.splice(-3,3);
 
@@ -56,16 +56,16 @@ class App extends Component {
 				title: randomMadLib.title,
 				madLibsArray: mergeMadLibArray
 			});
-	      });
+    });
 	}
 
 	addInputs(index, value) {
 		// take a copy of the state
-	    const madLibsInput = {...this.state.madLibsInput};
-	    // then add in new objects from field inputs
-	    madLibsInput[index] = value;
-	    // set state with added objects in it
-	    this.setState({ madLibsInput });
+    const madLibsInput = {...this.state.madLibsInput};
+    // then add in new objects from field inputs
+    madLibsInput[index] = value;
+    // set state with added objects in it
+    this.setState({ madLibsInput });
 	}
 
 	convertInputs() {
@@ -81,7 +81,6 @@ class App extends Component {
 
 		}
 		Promise.all(promiseArray).then((response) => {
-			// var index = 1;
 			var gifsArray = [];
 			for(var object in response) {
 				// get giphy images
@@ -94,11 +93,10 @@ class App extends Component {
 					giphyReplace: gifsArray
 				})
 			}
-			//console.log(this.state.giphyReplace);
 		}).catch(function(err) {
-	        // dispatch a failure and throw error
-	        throw err;
-	    });
+      // dispatch a failure and throw error
+      throw err;
+   });
 	}
 
 	render() {
@@ -114,8 +112,18 @@ class App extends Component {
 					<h1>{this.state.title}</h1>
 					<BrowserRouter>
 						<Switch>
-							<Route exact path='/' render={routeProps => <MadLibs {...routeProps} gifImages={this.state.giphyReplace} displayMadLibs={this.state.madLibsArray} convertInputs={this.convertInputs} addInputs={this.addInputs} />} />
-							<Route exact path="/mad-giphy/" render={routeProps => <MadGiphy {...routeProps} gifImages={this.state.giphyReplace} madLibsArray={this.state.madLibsArray} />} />
+							<Route exact path='/'render={routeProps => 
+								<MadLibs {...routeProps}
+									gifImages={this.state.giphyReplace}
+									displayMadLibs={this.state.madLibsArray}
+									convertInputs={this.convertInputs}
+									addInputs={this.addInputs} />}
+								/>
+							<Route exact path="/mad-giphy/" render={routeProps =>
+								<MadGiphy {...routeProps}
+									gifImages={this.state.giphyReplace}
+									madLibsArray={this.state.madLibsArray} />}
+								/>
 							<Route component={Error404} />
 						</Switch>
 					</BrowserRouter>
